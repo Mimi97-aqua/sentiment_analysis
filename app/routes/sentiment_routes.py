@@ -11,10 +11,19 @@ allowed_extensions = {'txt', 'text', 'csv'}
 
 def allowed_file(filename):
     """
+    Checks if the uploaded file has an allowed extension.
 
-    :param filename:
+    This function checks if the provided filename has a valid extension that is included
+    in the list of predefined allowed extensions. The check is case-insensitive and the
+    function expects the filename to include an extension separated by a dot (.)
+
+    :param filename: str
+        The file name to check
     :return:
+        True if condition passes
+        False if condition fails
     """
+
     if '.' in filename and filename.rsplit('.', 1)[1].lower() in allowed_extensions:
         return True
     else:
@@ -23,15 +32,26 @@ def allowed_file(filename):
 
 @sentiment_routes.route('/', methods=['GET'])
 def hello():
+    """
+    Hello function for greeting the user!
+    :return:
+        Greet/Welcome message
+    """
     return 'Welcome! Let\'s get analyzing'
 
 
 @sentiment_routes.route('/web', methods=['GET'])
 def sentiment_from_web():
     """
+    Gets sentiment from text gotten from the web.
+
+    This function gets the URL of a website as a query parameter and downloads
+    the text from that website by calling the analyze_from_web() function.
 
     :return:
+        Sentiment/Polarity of the analyzed text
     """
+
     url = request.args.get('url')
     if not url:
         return jsonify({
@@ -55,8 +75,14 @@ def sentiment_from_web():
 @sentiment_routes.route('/doc', methods=['POST'])
 def sentiment_from_doc():
     """
+    Gets sentiment from text read from an uploaded document.
+
+    This function receives a document of a specified file type and reads the
+    text found in the file by calling the analyze_doc() function to get the
+    sentiment of the text.
 
     :return:
+        Sentiment/Polarity of the analyzed text
     """
     if 'file' not in request.files:
         return jsonify({
