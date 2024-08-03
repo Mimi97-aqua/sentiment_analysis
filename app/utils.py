@@ -19,7 +19,12 @@ def get_sentiment_category(polarity: float) -> str:
         return 'Neutral'
 
 
-def analyze_from_web(url: str):
+def analyze_from_web(url: str) -> str:
+    """
+
+    :param url:
+    :return:
+    """
     article = Article(url)
 
     article.download()
@@ -33,14 +38,31 @@ def analyze_from_web(url: str):
     print(sentiment_category)
 
 
+def analyze_sentence(sentence: str) -> str:
+    """
+
+    :param sentence:
+    :return:
+    """
+    blob = TextBlob(sentence)
+    sentiment = blob.sentiment.polarity
+
+    sentiment_category = get_sentiment_category(sentiment)
+    print(sentiment_category)
 
 
-# def analyze_sentence():
-#
-#
-# def analyze_doc():
+def analyze_doc(file_path: str) -> str:
+    with open(file_path, 'r') as file:
+        text = file.read()
 
+    blob = TextBlob(text)
+    sentiment = blob.sentiment.polarity
+
+    sentence_category = get_sentiment_category(sentiment)
+    print(sentence_category)
 
 
 # Function calls
-analyze_from_web("https://en.wikipedia.org/wiki/Mathematics")
+# analyze_from_web("https://en.wikipedia.org/wiki/Mathematics")
+# analyze_sentence("You are mad!")
+# analyze_doc(r'../mytext.txt')
