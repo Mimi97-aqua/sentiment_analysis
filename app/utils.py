@@ -2,7 +2,24 @@ from textblob import TextBlob
 from newspaper import Article
 
 
-def analyze_from_web(url:str):
+def get_sentiment_category(polarity: float) -> str:
+    """
+    This function takes the polarity as input and returns a string
+    representing the sentiment category of the text. ie postive,
+    negative, or neutral
+    :param polarity: A value which represents the sentiment category
+        of a given text.
+    :return:
+    """
+    if polarity > 0:
+        return 'Positive'
+    elif polarity < 0:
+        return 'Negative'
+    else:
+        return 'Neutral'
+
+
+def analyze_from_web(url: str):
     article = Article(url)
 
     article.download()
@@ -10,9 +27,12 @@ def analyze_from_web(url:str):
     article.nlp()
 
     blob = TextBlob(article.text)
-    sentiment = blob.sentiment
+    sentiment = blob.sentiment.polarity
 
-    print(sentiment)
+    sentiment_category = get_sentiment_category(sentiment)
+    print(sentiment_category)
+
+
 
 
 # def analyze_sentence():
