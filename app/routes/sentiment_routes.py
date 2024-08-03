@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from ..utils import analyze_from_web, analyze_doc
+from ..utils import analyze_from_web, analyze_doc, analyze_sentence
 import os
 
 sentiment_routes = Blueprint('sentiment_routes', __name__)
@@ -121,3 +121,35 @@ def sentiment_from_doc():
             "message": f"Invalid file type. Only the following files are allowed:"
                        f"{allowed_extensions}"
         }), 400
+
+
+@sentiment_routes.route('/sentence', methods=['GET'])
+def sentiment_from_sentence():
+    """
+    Gets sentiment from a given sentence.
+
+    This function receives a sentence as a query parameter and gets the
+    sentiment of it by calling the analyze_sentence() function.
+
+    :return:
+        Sentiment/Polarity of the analyzed text
+    """
+
+    sentence = request.args.get('sentence')
+    try:
+        if not sentence:
+            return jsonify({
+                "status": "fail",
+                "message": "No sentence found! Please insert sentence."
+            }), 400
+        else:
+            sentiment_category = analyze_sentence(sentence)
+            return jsonify({
+                "Status": "success",
+                "sentiment": sentiment_category
+            }), 200
+    except Exception as e:
+        return jsonify({
+            "status": "fail",
+            "message": str(e)
+        }), 500
