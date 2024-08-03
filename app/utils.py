@@ -12,10 +12,13 @@ def get_sentiment_category(polarity: float) -> str:
     :return:
     """
     if polarity > 0:
+        print(polarity)
         return 'Positive'
     elif polarity < 0:
+        print(polarity)
         return 'Negative'
     else:
+        print(polarity)
         return 'Neutral'
 
 
@@ -35,7 +38,8 @@ def analyze_from_web(url: str) -> str:
     sentiment = blob.sentiment.polarity
 
     sentiment_category = get_sentiment_category(sentiment)
-    print(sentiment_category)
+    # print(sentiment_category)
+    return sentiment_category
 
 
 def analyze_sentence(sentence: str) -> str:
@@ -48,7 +52,8 @@ def analyze_sentence(sentence: str) -> str:
     sentiment = blob.sentiment.polarity
 
     sentiment_category = get_sentiment_category(sentiment)
-    print(sentiment_category)
+    # print(sentiment_category)
+    return sentiment_category
 
 
 def analyze_doc(file_path: str) -> str:
@@ -58,8 +63,9 @@ def analyze_doc(file_path: str) -> str:
     blob = TextBlob(text)
     sentiment = blob.sentiment.polarity
 
-    sentence_category = get_sentiment_category(sentiment)
-    print(sentence_category)
+    sentiment_category = get_sentiment_category(sentiment)
+    # print(sentiment_category)
+    return sentiment_category
 
 
 # Function calls
