@@ -1,17 +1,6 @@
-from textblob import TextBlob
-from newspaper import Article
+from app.routes import create_app
 
-url = 'https://en.wikipedia.org/wiki/Mathematics'
-article = Article(url)
+app = create_app()
 
-article.download()  # to get it into the Script
-article.parse()  # to remove the html
-article.nlp()  # to make it ready for nlp
-
-# text_blob = TextBlob(article.text)
-# sentiment = text_blob.sentiment
-
-text = article.summary
-blob = TextBlob(text)
-sentiment = blob.sentiment.polarity
-print(sentiment)
+if __name__ == '__main__':
+    app.run(debug=True)
