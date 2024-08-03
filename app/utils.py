@@ -4,12 +4,17 @@ from newspaper import Article
 
 def get_sentiment_category(polarity: float) -> str:
     """
+    Gets text polarity.
+
     This function takes the polarity as input and returns a string
     representing the sentiment category of the text. ie postive,
     negative, or neutral
-    :param polarity: A value which represents the sentiment category
+
+    :param polarity:
+        A value which represents the sentiment category
         of a given text.
     :return:
+        Polarity (Sentiment)
     """
     if polarity > 0:
         print(polarity)
@@ -24,9 +29,15 @@ def get_sentiment_category(polarity: float) -> str:
 
 def analyze_from_web(url: str) -> str:
     """
+    Analyzes the sentiment of an article(text) from the web.
 
-    :param url:
-    :return:
+    This function downloads and processes an article from the provided
+    URL and then analyzes its sentiment using TextBlob
+
+    :param url: str
+        The URL of the article to analyze
+    :return: str
+        The sentiment category of the article ie positive, negative or neutral
     """
     article = Article(url)
 
@@ -44,9 +55,15 @@ def analyze_from_web(url: str) -> str:
 
 def analyze_sentence(sentence: str) -> str:
     """
+    Analyzes the sentiment of a given sentence.
 
-    :param sentence:
-    :return:
+    This function processes the provided sentence and analyzes its sentiment
+    using TextBlob.
+
+    :param sentence: str
+        The sentence to analyze
+    :return: str
+        The sentiment category of the sentence
     """
     blob = TextBlob(sentence)
     sentiment = blob.sentiment.polarity
@@ -57,6 +74,17 @@ def analyze_sentence(sentence: str) -> str:
 
 
 def analyze_doc(file_path: str) -> str:
+    """
+    Analyzes the sentiment of a given document.
+
+    This function reads the content of a file, processes it, and analyzes
+    its sentiment using TextBlob
+
+    :param file_path: str
+        The document to analyze
+    :return: str
+        The sentiment category of the text in the document
+    """
     with open(file_path, 'r') as file:
         text = file.read()
 

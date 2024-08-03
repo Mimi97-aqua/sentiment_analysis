@@ -19,7 +19,7 @@ def allowed_file(filename):
 
     :param filename: str
         The file name to check
-    :return:
+    :return: boolean
         True if condition passes
         False if condition fails
     """
@@ -34,7 +34,8 @@ def allowed_file(filename):
 def hello():
     """
     Hello function for greeting the user!
-    :return:
+
+    :return: str
         Greet/Welcome message
     """
     return 'Welcome! Let\'s get analyzing'
@@ -48,7 +49,7 @@ def sentiment_from_web():
     This function gets the URL of a website as a query parameter and downloads
     the text from that website by calling the analyze_from_web() function.
 
-    :return:
+    :return: str
         Sentiment/Polarity of the analyzed text
     """
 
@@ -81,7 +82,7 @@ def sentiment_from_doc():
     text found in the file by calling the analyze_doc() function to get the
     sentiment of the text.
 
-    :return:
+    :return: str
         Sentiment/Polarity of the analyzed text
     """
     if 'file' not in request.files:
@@ -131,7 +132,7 @@ def sentiment_from_sentence():
     This function receives a sentence as a query parameter and gets the
     sentiment of it by calling the analyze_sentence() function.
 
-    :return:
+    :return: str
         Sentiment/Polarity of the analyzed text
     """
 
