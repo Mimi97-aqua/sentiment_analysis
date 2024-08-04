@@ -85,6 +85,9 @@ def sentiment_from_doc():
     :return: str
         Sentiment/Polarity of the analyzed text
     """
+    if not os.path.exists(upload_folder):
+        os.makedirs(upload_folder)
+
     if 'file' not in request.files:
         return jsonify({
             "status": "fail",
