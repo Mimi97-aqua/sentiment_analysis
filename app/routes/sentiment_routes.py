@@ -6,7 +6,7 @@ sentiment_routes = Blueprint('sentiment_routes', __name__)
 
 
 upload_folder = 'app/tmp'  # Temporary upload folder for files
-allowed_extensions = {'txt', 'text', 'csv'}
+allowed_extensions = {'txt', 'csv'}
 
 
 def allowed_file(filename):
