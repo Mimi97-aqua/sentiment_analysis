@@ -25,7 +25,7 @@ It uses:
 pip install nltk, flask, newspaper3k, textblob
 ````
 
-**Note:** This API is hosted [here.]() You can use this link to test the endpoints as an alternative to local setup. 
+**Note:** This API is hosted [here.](https://sentiment-analysis-8nic.onrender.com) You can use this link to test the endpoints as an alternative to local setup. 
 
 ## Installation
 1. **Clone this repository**
