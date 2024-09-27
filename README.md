@@ -2,7 +2,7 @@
 
 ## Overview
 
-This API provided endpoints for sentiment analysis for the following sources:
+This API provides endpoints for sentiment analysis for the following sources:
 - Web page URLs
 - Uploaded documents of file types `.txt` and `.csv`
 - Directly provided sentences
